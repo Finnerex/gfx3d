@@ -1,0 +1,658 @@
+	section	.text,"ax",@progbits
+	assume	adl = 1
+	file	0 "C:\CEdev\projects\gfx3d" "src\vector.c" md5 0xc9a96d39fad61b019c131ccd88f9e523
+	file	1 "src" "vector.c" md5 0xc9a96d39fad61b019c131ccd88f9e523
+	section	.text,"ax",@progbits
+	public	_vec3_add
+_vec3_add:
+	private	func_begin0
+func_begin0:
+	loc	1 4 0
+	cfi_sections .debug_frame
+	cfi_startproc
+	ld	hl, -22
+	call	__frameset
+	private	tmp0
+tmp0:
+	cfi_def_cfa ix, 6
+	cfi_offset ix, -6
+	ld	de, -327680
+	private	tmp1
+tmp1:
+	loc	1 0 0 is_stmt 0
+	ld	hl, _.str
+	loc	1 5 5 prologue_end is_stmt 1
+	push	hl
+	push	de
+	call	_sprintf
+	private	tmp2
+tmp2:
+	pop	hl
+	pop	hl
+	loc	1 6 5
+	ld	b, (ix + 12)
+	ld	(ix - 17), b
+	ld	iy, (ix + 13)
+	ld	(ix - 10), iy
+	ld	c, (ix + 16)
+	ld	(ix - 7), c
+	ld	de, (ix + 17)
+	ld	(ix - 4), de
+	ld	a, (ix + 20)
+	ld	(ix - 1), a
+	ld	l, a
+	push	hl
+	push	de
+	ld	l, c
+	push	hl
+	push	iy
+	ld	l, b
+	push	hl
+	ld	hl, (ix + 9)
+	push	hl
+	ld	hl, _.str.1
+	push	hl
+	ld	hl, -327680
+	push	hl
+	call	_sprintf
+	private	tmp3
+tmp3:
+	ld	hl, 24
+	add	hl, sp
+	ld	sp, hl
+	loc	1 7 5
+	ld	b, (ix + 24)
+	ld	(ix - 18), b
+	ld	iy, (ix + 25)
+	ld	(ix - 22), iy
+	ld	c, (ix + 28)
+	ld	(ix - 19), c
+	ld	de, (ix + 29)
+	ld	(ix - 14), de
+	ld	a, (ix + 32)
+	ld	(ix - 11), a
+	ld	l, a
+	push	hl
+	push	de
+	ld	l, c
+	push	hl
+	push	iy
+	ld	l, b
+	push	hl
+	ld	hl, (ix + 21)
+	push	hl
+	ld	hl, _.str.2
+	push	hl
+	ld	hl, -327680
+	push	hl
+	call	_sprintf
+	private	tmp4
+tmp4:
+	ld	hl, 24
+	add	hl, sp
+	ld	sp, hl
+	private	tmp5
+tmp5:
+	loc	1 9 35
+	ld	bc, (ix + 9)
+	ld	a, (ix - 17)
+	ld	hl, (ix + 21)
+	ld	e, (ix - 18)
+	call	__fadd
+	private	tmp6
+tmp6:
+	ld	(ix - 17), bc
+	ld	(ix - 18), a
+	ld	iy, (ix + 6)
+	private	tmp7
+tmp7:
+	loc	1 9 26 is_stmt 0
+	ld	(iy), bc
+	ld	(iy + 3), a
+	loc	1 9 55
+	ld	bc, (ix - 10)
+	ld	a, (ix - 7)
+	ld	hl, (ix - 22)
+	ld	e, (ix - 19)
+	call	__fadd
+	private	tmp8
+tmp8:
+	ld	(ix - 7), bc
+	ld	d, a
+	loc	1 9 26
+	ld	(iy + 4), bc
+	ld	(iy + 7), d
+	loc	1 9 75
+	ld	bc, (ix - 4)
+	ld	a, (ix - 1)
+	ld	hl, (ix - 14)
+	ld	e, (ix - 11)
+	call	__fadd
+	private	tmp9
+tmp9:
+	loc	1 9 26
+	ld	(iy + 8), bc
+	ld	(iy + 11), a
+	private	tmp10
+tmp10:
+	loc	1 11 5 is_stmt 1
+	ld	l, a
+	push	hl
+	push	bc
+	ld	l, d
+	push	hl
+	ld	hl, (ix - 7)
+	push	hl
+	ld	l, (ix - 18)
+	push	hl
+	ld	hl, (ix - 17)
+	push	hl
+	ld	hl, _.str.3
+	push	hl
+	ld	hl, -327680
+	push	hl
+	call	_sprintf
+	private	tmp11
+tmp11:
+	ld	hl, 24
+	add	hl, sp
+	ld	sp, hl
+	loc	1 13 5
+	ld	hl, _.str.4
+	push	hl
+	ld	hl, -327680
+	push	hl
+	call	_sprintf
+	private	tmp12
+tmp12:
+	pop	hl
+	pop	hl
+	loc	1 15 5
+	ld	hl, (ix + 6)
+	private	tmp13
+tmp13:
+	ld	sp, ix
+	pop	ix
+	cfi_def_cfa sp, 3
+	cfi_restore ix
+	ret
+	private	tmp14
+tmp14:
+	section	.text,"ax",@progbits
+	private	func_end0
+func_end0:
+	cfi_endproc
+
+	section	.rodata,"a",@progbits
+	private	_.str
+_.str:
+	db	"----------ADDITION----------", 10, 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.1
+_.str.1:
+	db	"First-", 10, "X: %f, Y: %f, Z: %f", 10, 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.2
+_.str.2:
+	db	"Second-", 10, "X: %f, Y: %f, Z: %f", 10, 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.3
+_.str.3:
+	db	"Output-", 10, "X: %f, Y: %f, Z: %f", 10, 0
+
+	section	.rodata,"a",@progbits
+	private	_.str.4
+_.str.4:
+	db	"--------END ADDITION--------", 10, 0
+
+	file	2 "src" "vector.h" md5 0xf1027f06bc285b8244aaee2cac22777c
+	section	.debug_loclists,"",@progbits
+	dd	debug_list_header_end0-debug_list_header_start0
+	private	debug_list_header_start0
+debug_list_header_start0:
+	dw	5
+	db	3
+	db	0
+	dd	1
+	private	loclists_table_base0
+loclists_table_base0:
+	dd	debug_loc0-loclists_table_base0
+	private	debug_loc0
+debug_loc0:
+	db	4
+	uleb128	tmp7-func_begin0
+	uleb128	tmp10-func_begin0
+	db	2
+	db	117
+	db	0
+	db	4
+	uleb128	tmp13-func_begin0
+	uleb128	func_end0-func_begin0
+	db	2
+	db	114
+	db	0
+	db	0
+	private	debug_list_header_end0
+debug_list_header_end0:
+	section	.debug_abbrev,"",@progbits
+	private	abbrev_start0
+abbrev_start0:
+	db	1
+	db	17
+	db	1
+	db	37
+	db	37
+	db	19
+	db	5
+	db	3
+	db	37
+	db	114
+	db	23
+	db	16
+	db	23
+	db	27
+	db	37
+	db	17
+	db	27
+	db	18
+	db	6
+	db	115
+	db	23
+	db	"Œ"
+	db	23
+	db	0
+	db	0
+	db	2
+	db	52
+	db	0
+	db	73
+	db	19
+	db	58
+	db	11
+	db	59
+	db	11
+	db	2
+	db	24
+	db	0
+	db	0
+	db	3
+	db	1
+	db	1
+	db	73
+	db	19
+	db	0
+	db	0
+	db	4
+	db	33
+	db	0
+	db	73
+	db	19
+	db	55
+	db	11
+	db	0
+	db	0
+	db	5
+	db	36
+	db	0
+	db	3
+	db	37
+	db	62
+	db	11
+	db	11
+	db	11
+	db	0
+	db	0
+	db	6
+	db	36
+	db	0
+	db	3
+	db	37
+	db	11
+	db	11
+	db	62
+	db	11
+	db	0
+	db	0
+	db	7
+	db	15
+	db	0
+	db	73
+	db	19
+	db	0
+	db	0
+	db	8
+	db	46
+	db	1
+	db	17
+	db	27
+	db	18
+	db	6
+	db	64
+	db	24
+	db	122
+	db	25
+	db	3
+	db	37
+	db	58
+	db	11
+	db	59
+	db	11
+	db	39
+	db	25
+	db	73
+	db	19
+	db	63
+	db	25
+	db	0
+	db	0
+	db	9
+	db	5
+	db	0
+	db	3
+	db	37
+	db	58
+	db	11
+	db	59
+	db	11
+	db	73
+	db	19
+	db	0
+	db	0
+	db	10
+	db	52
+	db	0
+	db	2
+	db	34
+	db	3
+	db	37
+	db	58
+	db	11
+	db	59
+	db	11
+	db	73
+	db	19
+	db	0
+	db	0
+	db	11
+	db	22
+	db	0
+	db	73
+	db	19
+	db	3
+	db	37
+	db	58
+	db	11
+	db	59
+	db	11
+	db	0
+	db	0
+	db	12
+	db	19
+	db	1
+	db	3
+	db	37
+	db	11
+	db	11
+	db	58
+	db	11
+	db	59
+	db	11
+	db	0
+	db	0
+	db	13
+	db	13
+	db	0
+	db	3
+	db	37
+	db	73
+	db	19
+	db	58
+	db	11
+	db	59
+	db	11
+	db	56
+	db	11
+	db	0
+	db	0
+	db	0
+	section	.debug_info,"",@progbits
+	private	cu_begin0
+cu_begin0:
+	dd	debug_info_end0-debug_info_start0
+	private	debug_info_start0
+debug_info_start0:
+	dw	5
+	db	1
+	db	3
+	dd	abbrev_start0
+	db	1
+	db	0
+	dw	12
+	db	1
+	dd	str_offsets_base0
+	dd	line_table_start0
+	db	2
+	db	5
+	dd	func_end0-func_begin0
+	dd	addr_table_base0
+	dd	loclists_table_base0
+	db	2
+	dd	49
+	db	1
+	db	5
+	db	2
+	db	161
+	db	0
+	db	3
+	dd	61
+	db	4
+	dd	65
+	db	30
+	db	0
+	db	5
+	db	3
+	db	6
+	db	1
+	db	6
+	db	4
+	db	8
+	db	7
+	db	2
+	dd	79
+	db	1
+	db	6
+	db	2
+	db	161
+	db	1
+	db	3
+	dd	61
+	db	4
+	dd	65
+	db	28
+	db	0
+	db	2
+	dd	101
+	db	1
+	db	7
+	db	2
+	db	161
+	db	2
+	db	3
+	dd	61
+	db	4
+	dd	65
+	db	29
+	db	0
+	db	2
+	dd	101
+	db	1
+	db	11
+	db	2
+	db	161
+	db	3
+	db	2
+	dd	49
+	db	1
+	db	13
+	db	2
+	db	161
+	db	4
+	db	7
+	dd	61
+	db	8
+	db	5
+	dd	func_end0-func_begin0
+	db	1
+	db	84
+
+	db	5
+	db	1
+	db	4
+
+	dd	179
+
+	db	9
+	db	12
+	db	1
+	db	4
+	dd	179
+	db	9
+	db	13
+	db	1
+	db	4
+	dd	179
+	db	10
+	db	0
+	db	11
+	db	1
+	db	9
+	dd	179
+	db	0
+	db	11
+	dd	187
+	db	10
+	db	2
+	db	13
+	db	12
+	db	10
+	db	12
+	db	2
+	db	9
+	db	13
+	db	6
+	dd	220
+	db	2
+	db	10
+	db	0
+	db	13
+	db	8
+	dd	220
+	db	2
+	db	11
+	db	4
+	db	13
+	db	9
+	dd	220
+	db	2
+	db	12
+	db	8
+	db	0
+	db	5
+	db	7
+	db	4
+	db	4
+	db	0
+	private	debug_info_end0
+debug_info_end0:
+	section	.debug_str_offsets,"",@progbits
+	dd	60
+	dw	5
+	dw	0
+	private	str_offsets_base0
+str_offsets_base0:
+	section	.debug_str,"MS",@progbits,1
+	private	info_string0
+info_string0:
+	db	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 6d9aa7a16db70f3d02ae304b08d4a03011281fef)", 0
+	private	info_string1
+info_string1:
+	db	"src\vector.c", 0
+	private	info_string2
+info_string2:
+	db	"C:\CEdev\projects\gfx3d", 0
+	private	info_string3
+info_string3:
+	db	"char", 0
+	private	info_string4
+info_string4:
+	db	"__ARRAY_SIZE_TYPE__", 0
+	private	info_string5
+info_string5:
+	db	"vec3_add", 0
+	private	info_string6
+info_string6:
+	db	"x", 0
+	private	info_string7
+info_string7:
+	db	"float", 0
+	private	info_string8
+info_string8:
+	db	"y", 0
+	private	info_string9
+info_string9:
+	db	"z", 0
+	private	info_string10
+info_string10:
+	db	"vec3_t", 0
+	private	info_string11
+info_string11:
+	db	"out", 0
+	private	info_string12
+info_string12:
+	db	"first", 0
+	private	info_string13
+info_string13:
+	db	"second", 0
+	section	.debug_str_offsets,"",@progbits
+	dd	info_string0
+	dd	info_string1
+	dd	info_string2
+	dd	info_string3
+	dd	info_string4
+	dd	info_string5
+	dd	info_string6
+	dd	info_string7
+	dd	info_string8
+	dd	info_string9
+	dd	info_string10
+	dd	info_string11
+	dd	info_string12
+	dd	info_string13
+	section	.debug_addr,"",@progbits
+	dd	debug_addr_end0-debug_addr_start0
+	private	debug_addr_start0
+debug_addr_start0:
+	dw	5
+	db	3
+	db	0
+	private	addr_table_base0
+addr_table_base0:
+	dl	_.str
+	dl	_.str.1
+	dl	_.str.2
+	dl	_.str.3
+	dl	_.str.4
+	dl	func_begin0
+	private	debug_addr_end0
+debug_addr_end0:
+	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 6d9aa7a16db70f3d02ae304b08d4a03011281fef)"
+	section	.debug_line,"",@progbits
+line_table_start0:
+	extern	__Unwind_SjLj_Register
+	extern	__frameset
+	extern	__Unwind_SjLj_Unregister
+	extern	_sprintf
+	extern	__fadd
