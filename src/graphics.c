@@ -21,36 +21,26 @@ void gfx3d_line(vec3_t vert1, vec3_t vert2) {
     gfx_Line(pv1.x, pv1.y, pv2.x, pv2.y);
 }
 
+#include <debug.h>
+
 void gfx3d_triWireframe(vec3_t vert1, vec3_t vert2, vec3_t vert3) {
+
+    dbg_printf("First-\nX: %f, Y: %f, Z: %f\n", vert1.x, vert1.y, vert1.z);
+    dbg_printf("Second-\nX: %f, Y: %f, Z: %f\n", vert2.x, vert2.y, vert2.z);
+    dbg_printf("Third-\nX: %f, Y: %f, Z: %f\n", vert3.x, vert3.y, vert3.z);
+
     gfx3d_line(vert1, vert2);
     gfx3d_line(vert2, vert3);
     gfx3d_line(vert3, vert1);
 }
 
-#include <debug.h>
+
 
 void gfx3d_meshWireframe(mesh_t* mesh, vec3_t center) {
-
-    // is this efficient?
-    // size_t size = mesh->num_verts; // why did it make me do this?
-    // vec3_t new_verts[size];
-    // dbg_printf("--------------------NEW MESH--------------------\n");
-
-    // for (unsigned int i = 0; i < size; i++) {
-    //     dbg_printf("Old-\nX: %f, Y: %f, Z: %f\n", mesh->verts[i].x, mesh->verts[i].y, mesh->verts[i].z);
-
-    //     vec3_t value = vec3_add(mesh->verts[i], center);
-
-    //     dbg_printf("Value-\nX: %f, Y: %f, Z: %f\n", value.x, value.y, value.z);
-
-    //     new_verts[i] = value;
-
-    //     dbg_printf("Center-\nX: %f, Y: %f, Z: %f\n", center.x, center.y, center.z);
-    //     dbg_printf("NewOld-\nX: %f, Y: %f, Z: %f\n", mesh->verts[i].x, mesh->verts[i].y, mesh->verts[i].z);
-    //     dbg_printf("NewNew-\nX: %f, Y: %f, Z: %f\n", new_verts[i].x, new_verts[i].y, new_verts[i].z);
-    // }
     
     for (unsigned int i = 0; i < mesh->num_faces; i++) {
+
+        // face_t face = mesh->faces[i];
 
         // is this efficient? There is no way this is efficient.
         gfx3d_triWireframe(

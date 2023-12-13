@@ -32,7 +32,7 @@ int main() {
 
 #include "cube.h"
 
-obj3d_t objects[] = { { {{10, 10, 10}, {0, 0, 0}}, cube_mesh } }; // what a set a braces
+obj3d_t objects[] = { { {{0, 0, 2}, {0, 0, 0}}, cube_mesh } }; // what a set a braces
 int num_objs = 1;
 
 int selected_obj = 0;
