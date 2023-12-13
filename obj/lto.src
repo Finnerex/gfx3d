@@ -513,12 +513,13 @@ _step:
 	ld	a, e
 	jr	z, BB5_4
 BB5_3:
+	ld	iy, (_object+24)
+	ld	iy, (iy + 3)
 	ld	hl, (_selected_obj)
-	ld	bc, 27
+	ld	bc, 12
 	call	__imulu
 	push	hl
 	pop	bc
-	ld	iy, _objects
 	add	iy, bc
 	ld	(ix - 9), iy
 	lea	de, iy + 4
@@ -547,12 +548,13 @@ BB5_4:
 	ld	(ix - 3), e
 	jr	z, BB5_7
 BB5_6:
+	ld	iy, (_object+24)
+	ld	iy, (iy + 3)
 	ld	hl, (_selected_obj)
-	ld	bc, 27
+	ld	bc, 12
 	call	__imulu
 	push	hl
 	pop	bc
-	ld	iy, _objects
 	add	iy, bc
 	ld	(ix - 9), iy
 	ld	hl, (iy)
@@ -594,12 +596,13 @@ BB5_7:
 BB5_10:
 	ld	a, -67
 BB5_11:
+	ld	iy, (_object+24)
+	ld	iy, (iy + 3)
 	ld	hl, (_selected_obj)
-	ld	bc, 27
+	ld	bc, 12
 	call	__imulu
 	push	hl
 	pop	bc
-	ld	iy, _objects
 	add	iy, bc
 	ld	(ix - 3), iy
 	lea	de, iy + 8
@@ -702,15 +705,7 @@ _draw:
 	push	hl
 	call	_gfx_SetColor
 	pop	hl
-	ld	hl, (_selected_obj)
-	ld	bc, 27
-	call	__imulu
-	push	hl
-	pop	de
-	ld	iy, _objects
-	add	iy, de
-	ld	hl, (iy + 24)
-	ld	(ix - 11), hl
+	ld	iy, (_object+24)
 	push	hl
 	push	hl
 	push	hl
@@ -719,23 +714,24 @@ _draw:
 	ld	hl, 0
 	add	hl, sp
 	ex	de, hl
-	lea	hl, iy
 	ld	bc, 12
+	ld	hl, _object
 	ldir
-	ld	hl, (ix - 11)
-	push	hl
+	push	iy
 	call	_gfx3d_meshWireframe
 	pop	hl
 	pop	hl
 	pop	hl
 	pop	hl
 	pop	hl
+	ld	iy, (_object+24)
+	ld	iy, (iy + 3)
 	ld	hl, (_selected_obj)
-	ld	bc, 27
+	ld	bc, 12
 	call	__imulu
 	push	hl
 	pop	de
-	ld	hl, _objects
+	lea	hl, iy
 	add	hl, de
 	ld	(ix - 11), hl
 	push	de
@@ -746,7 +742,6 @@ _draw:
 	ld	hl, 0
 	add	hl, sp
 	ex	de, hl
-	ld	bc, 12
 	ldir
 	pea	ix - 8
 	call	_gfx3d_projectVert
@@ -931,30 +926,30 @@ _cube_faces:
 	section	.data,"aw",@progbits
 	public	_cube_verts
 _cube_verts:
-	dd	0x3f800000
-	dd	0x3f800000
-	dd	0xbf800000
-	dd	0x3f800000
-	dd	0xbf800000
-	dd	0xbf800000
-	dd	0x3f800000
-	dd	0x3f800000
-	dd	0x3f800000
-	dd	0x3f800000
-	dd	0xbf800000
-	dd	0x3f800000
-	dd	0xbf800000
-	dd	0x3f800000
-	dd	0xbf800000
-	dd	0xbf800000
-	dd	0xbf800000
-	dd	0xbf800000
-	dd	0xbf800000
-	dd	0x3f800000
-	dd	0x3f800000
-	dd	0xbf800000
-	dd	0xbf800000
-	dd	0x3f800000
+	dd	0x41200000
+	dd	0x41200000
+	dd	0xc1200000
+	dd	0x41200000
+	dd	0xc1200000
+	dd	0xc1200000
+	dd	0x41200000
+	dd	0x41200000
+	dd	0x41200000
+	dd	0x41200000
+	dd	0xc1200000
+	dd	0x41200000
+	dd	0xc1200000
+	dd	0x41200000
+	dd	0xc1200000
+	dd	0xc1200000
+	dd	0xc1200000
+	dd	0xc1200000
+	dd	0xc1200000
+	dd	0x41200000
+	dd	0x41200000
+	dd	0xc1200000
+	dd	0xc1200000
+	dd	0x41200000
 
 	section	.data,"aw",@progbits
 	public	_global_palette
@@ -970,18 +965,18 @@ _cube_data:
 	dl	8
 
 	section	.data,"aw",@progbits
-	public	_objects
-_objects:
+	public	_object
+_object:
 	dd	0x00000000
 	dd	0x00000000
-	dd	0x40000000
+	dd	0x41300000
 	db	12 dup 0
 	dl	_cube_data
 
 	section	.data,"aw",@progbits
 	public	_num_objs
 _num_objs:
-	dl	1
+	dl	8
 
 	section	.bss,"aw",@nobits
 	public	_selected_obj

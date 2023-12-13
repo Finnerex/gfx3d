@@ -32,8 +32,10 @@ int main() {
 
 #include "cube.h"
 
-obj3d_t objects[] = { { {{0, 0, 2}, {0, 0, 0}}, cube_mesh } }; // what a set a braces
-int num_objs = 1;
+// obj3d_t objects[] = { { {{0, 0, 3}, {0, 0, 0}}, cube_mesh } }; // what a set a braces
+obj3d_t object = { {{0, 0, 11}, {0, 0, 0}}, cube_mesh };
+
+int num_objs = 8;
 
 int selected_obj = 0;
 
@@ -51,19 +53,19 @@ bool step() {
     
 
     if (kb_Data[7] & kb_Up)
-        objects[selected_obj].transform.position.y --;
+        object.mesh->verts[selected_obj]/* .transform.position */.y --;
     else if (kb_Data[7] & kb_Down)
-        objects[selected_obj].transform.position.y ++;
+        object.mesh->verts[selected_obj]/* .transform.position */.y ++;
 
     if (kb_Data[7] & kb_Left)
-        objects[selected_obj].transform.position.x --;
+        object.mesh->verts[selected_obj]/* .transform.position */.x --;
     else if (kb_Data[7] & kb_Right)
-        objects[selected_obj].transform.position.x ++;
+        object.mesh->verts[selected_obj]/* .transform.position */.x ++;
 
     if (kb_Data[1] & kb_2nd)
-        objects[selected_obj].transform.position.z -= 0.1f;
+        object.mesh->verts[selected_obj]/* .transform.position */.z -= 0.1f;
     else if (kb_Data[2] & kb_Alpha)
-        objects[selected_obj].transform.position.z += 0.1f;
+        object.mesh->verts[selected_obj]/* .transform.position */.z += 0.1f;
 
     static bool lm, ld, m, d;
     m = kb_Data[1] & kb_Mode;
@@ -85,9 +87,9 @@ void draw() {
     gfx_FillScreen(0);
 
     gfx_SetColor(1);
-    gfx3d_meshWireframe(objects[selected_obj].mesh, objects[selected_obj].transform.position);
+    gfx3d_meshWireframe(object.mesh, object.transform.position);
 
-    vec3_t* center = &objects[selected_obj].transform.position;
+    vec3_t* center = &object.mesh->verts[selected_obj];
 
     vec2_t projected_selected_vertex = gfx3d_projectVert(*center);
 
