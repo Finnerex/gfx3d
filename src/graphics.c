@@ -7,8 +7,7 @@
 #define HW GFX_LCD_WIDTH / 2
 #define HH GFX_LCD_HEIGHT / 2
 
-#define FOV 90 // might not be fov?
-
+#define FOV 180 // might not be fov?
 
 
 vec2_t gfx3d_projectVert(vec3_t vert) {

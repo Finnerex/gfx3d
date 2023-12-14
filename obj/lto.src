@@ -5,11 +5,11 @@
 _gfx3d_projectVert:
 	ld	hl, -3
 	call	__frameset
-	ld	iy, (ix + 6)
-	ld	hl, -4980736
-	ld	e, 66
+	ld	hl, 3407872
+	ld	iyl, 67
 	ld	bc, (ix + 9)
 	ld	a, (ix + 12)
+	ld	e, iyl
 	call	__fmul
 	ld	hl, (ix + 17)
 	ld	(ix - 3), hl
@@ -17,23 +17,22 @@ _gfx3d_projectVert:
 	ld	e, d
 	call	__fdiv
 	ld	hl, 2097152
-	ld	e, 67
+	ld	e, iyl
 	call	__fadd
+	ld	iy, (ix + 6)
 	ld	(iy), bc
 	ld	(iy + 3), a
 	ld	bc, (ix + 13)
 	ld	a, (ix + 16)
-	ld	hl, -4980736
-	ld	iyl, 66
-	ld	e, iyl
+	ld	hl, 3407872
+	ld	e, 67
 	call	__fmul
 	ld	hl, (ix - 3)
 	ld	e, d
 	call	__fdiv
 	ld	hl, -1048576
-	ld	e, iyl
+	ld	e, 66
 	call	__fadd
-	ld	iy, (ix + 6)
 	ld	(iy + 4), bc
 	ld	(iy + 7), a
 	lea	hl, iy
