@@ -32,10 +32,8 @@ int main() {
 
 #include "cube.h"
 
-// obj3d_t objects[] = { { {{0, 0, 3}, {0, 0, 0}}, cube_mesh } }; // what a set a braces
-obj3d_t object = { {{0, 0, 11}, {0, 0, 0}}, cube_mesh };
-
-int num_objs = 8;
+obj3d_t objects[] = { { {{0, 0, 2.5}, {0, 0, 0}}, cube_mesh } }; // what a set a braces
+int num_objs = 1;
 
 int selected_obj = 0;
 
@@ -52,20 +50,20 @@ bool step() {
         return false;
     
 
-    if (kb_Data[7] & kb_Up)
-        object.mesh->verts[selected_obj]/* .transform.position */.y --;
+     if (kb_Data[7] & kb_Up)
+        objects[selected_obj].transform.position.y -= 0.1f;
     else if (kb_Data[7] & kb_Down)
-        object.mesh->verts[selected_obj]/* .transform.position */.y ++;
+        objects[selected_obj].transform.position.y += 0.1f;
 
     if (kb_Data[7] & kb_Left)
-        object.mesh->verts[selected_obj]/* .transform.position */.x --;
+        objects[selected_obj].transform.position.x -= 0.1f;
     else if (kb_Data[7] & kb_Right)
-        object.mesh->verts[selected_obj]/* .transform.position */.x ++;
+        objects[selected_obj].transform.position.x += 0.1f;
 
     if (kb_Data[1] & kb_2nd)
-        object.mesh->verts[selected_obj]/* .transform.position */.z -= 0.1f;
+        objects[selected_obj].transform.position.z -= 0.1f;
     else if (kb_Data[2] & kb_Alpha)
-        object.mesh->verts[selected_obj]/* .transform.position */.z += 0.1f;
+        objects[selected_obj].transform.position.z += 0.1f;
 
     static bool lm, ld, m, d;
     m = kb_Data[1] & kb_Mode;
@@ -87,9 +85,9 @@ void draw() {
     gfx_FillScreen(0);
 
     gfx_SetColor(1);
-    gfx3d_meshWireframe(object.mesh, object.transform.position);
+    gfx3d_meshWireframe(objects[selected_obj].mesh, objects[selected_obj].transform.position);
 
-    vec3_t* center = &object.mesh->verts[selected_obj];
+    vec3_t* center = &objects[selected_obj].transform.position;
 
     vec2_t projected_selected_vertex = gfx3d_projectVert(*center);
 
@@ -103,7 +101,7 @@ void draw() {
     gfx_PrintString(" y: ");
     gfx_PrintInt(center->y, 1);
     gfx_PrintString(" z: ");
-    gfx_PrintInt(center->z * 10, 1);
+    gfx_PrintInt(center->z, 1);
     gfx_PrintString(" object: ");
     gfx_PrintInt(selected_obj, 1);
 

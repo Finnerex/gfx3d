@@ -3,127 +3,37 @@
 	section	.text,"ax",@progbits
 	public	_gfx3d_projectVert
 _gfx3d_projectVert:
-	ld	hl, -4
+	ld	hl, -3
 	call	__frameset
-	ld	de, (ix + 17)
-	ld	a, (ix + 20)
-	ld	(ix - 4), a
-	ld	l, a
-	push	hl
-	ld	(ix - 3), de
-	push	de
-	call	_fabsf
-	pop	bc
-	pop	bc
-	ld	iy, (ix + 9)
-	ld	d, (ix + 12)
-	ld	bc, -8187281
-	ld	a, 58
-	call	__fcmp
-	jp	p, BB0_7
-	or	a, a
-	sbc	hl, hl
-	lea	bc, iy
-	ld	e, h
-	ld	a, d
-	call	__fcmp
-	ld	iy, 0
-	push	hl
-	pop	bc
-	jp	p, BB0_3
-	ld	iy, 1
-BB0_3:
-	ld	hl, (ix + 9)
-	ld	e, d
-	ld	d, 0
-	ld	a, d
-	call	__fcmp
-	ld	hl, 0
-	jp	p, BB0_5
-	ld	hl, -1
-BB0_5:
-	lea	bc, iy
-	add	hl, bc
-	push	hl
-	pop	bc
-	push	bc
-	pop	iy
-	add	iy, iy
-	sbc	hl, hl
-	ld	a, l
-	call	__ltof
-	ld	hl, -8388608
-	ld	e, 127
+	ld	iy, (ix + 6)
+	ld	hl, -4980736
+	ld	e, 66
+	ld	bc, (ix + 9)
+	ld	a, (ix + 12)
 	call	__fmul
-	ld	hl, (ix + 6)
-	push	hl
-	pop	iy
-	ld	(iy), bc
-	ld	(iy + 3), a
-	ld	iy, 0
-	lea	hl, iy
-	ld	bc, (ix + 13)
-	ld	a, (ix + 16)
-	ld	e, d
-	call	__fcmp
-	ld	hl, 0
-	jp	m, BB0_8
-	push	hl
-	pop	iy
-	jr	BB0_9
-BB0_7:
-	lea	bc, iy
-	ld	iy, 2097152
-	ld	a, d
-	ld	hl, (ix - 3)
-	ld	d, (ix - 4)
+	ld	hl, (ix + 17)
+	ld	(ix - 3), hl
+	ld	d, (ix + 20)
 	ld	e, d
 	call	__fdiv
-	lea	hl, iy
+	ld	hl, 2097152
 	ld	e, 67
 	call	__fadd
-	ld	iy, (ix + 6)
 	ld	(iy), bc
 	ld	(iy + 3), a
 	ld	bc, (ix + 13)
 	ld	a, (ix + 16)
+	ld	hl, -4980736
+	ld	iyl, 66
+	ld	e, iyl
+	call	__fmul
 	ld	hl, (ix - 3)
 	ld	e, d
 	call	__fdiv
 	ld	hl, -1048576
-	ld	e, 66
+	ld	e, iyl
 	call	__fadd
-	jr	BB0_13
-BB0_8:
-	ld	iy, 1
-BB0_9:
-	push	bc
-	pop	hl
-	ld	e, a
-	ld	bc, 0
-	ld	a, d
-	call	__fcmp
-	jp	m, BB0_11
-	ld	hl, 0
-	jr	BB0_12
-BB0_11:
-	ld	hl, -1
-BB0_12:
-	lea	de, iy
-	add	hl, de
-	push	hl
-	pop	bc
-	push	bc
-	pop	iy
-	add	iy, iy
 	ld	iy, (ix + 6)
-	sbc	hl, hl
-	ld	a, l
-	call	__ltof
-	ld	hl, -8388608
-	ld	e, 127
-	call	__fmul
-BB0_13:
 	ld	(iy + 4), bc
 	ld	(iy + 7), a
 	lea	hl, iy
@@ -478,7 +388,7 @@ BB4_3:
 	section	.text,"ax",@progbits
 	public	_step
 _step:
-	ld	hl, -9
+	ld	hl, -7
 	call	__frameset
 	call	_kb_Scan
 	ld	hl, -720868
@@ -493,45 +403,42 @@ _step:
 	call	__sand
 	ld	a, l
 	or	a, a
-	jp	nz, BB5_23
-	ld	(ix - 6), hl
+	jp	nz, BB5_21
+	ld	(ix - 4), hl
 	ld	iy, -720866
-	ld	c, -65
-	ld	e, 63
+	ld	e, -67
 	ld	l, (iy)
 	ld	h, (iy + 1)
 	ld	a, l
 	bit	3, a
-	ld	(ix - 3), c
-	ld	a, c
+	ld	(ix - 1), e
+	ld	a, e
 	jr	nz, BB5_3
 	ld.sis	bc, 1
 	ld	l, (iy)
 	ld	h, (iy + 1)
 	call	__sand
 	bit	0, l
-	ld	a, e
+	ld	a, 61
 	jr	z, BB5_4
 BB5_3:
-	ld	iy, (_object+24)
-	ld	iy, (iy + 3)
 	ld	hl, (_selected_obj)
-	ld	bc, 12
+	ld	bc, 27
 	call	__imulu
 	push	hl
 	pop	bc
+	ld	iy, _objects
 	add	iy, bc
-	ld	(ix - 9), iy
+	ld	(ix - 7), iy
 	lea	de, iy + 4
 	ld	hl, (iy + 4)
 	push	de
 	pop	iy
 	lea	iy, iy + 3
-	ld	bc, -8388608
+	ld	bc, -3355443
 	ld	e, (iy)
 	call	__fadd
-	ld	e, 63
-	ld	iy, (ix - 9)
+	ld	iy, (ix - 7)
 	ld	(iy + 4), bc
 	ld	(iy + 7), a
 	ld	iy, -720866
@@ -540,30 +447,29 @@ BB5_4:
 	ld	h, (iy + 1)
 	ld	a, l
 	bit	1, a
+	ld	a, -67
 	jr	nz, BB5_6
 	ld	l, (iy)
 	ld	h, (iy + 1)
 	ld	a, l
 	bit	2, a
-	ld	(ix - 3), e
+	ld	a, 61
 	jr	z, BB5_7
 BB5_6:
-	ld	iy, (_object+24)
-	ld	iy, (iy + 3)
 	ld	hl, (_selected_obj)
-	ld	bc, 12
+	ld	bc, 27
 	call	__imulu
 	push	hl
 	pop	bc
+	ld	iy, _objects
 	add	iy, bc
-	ld	(ix - 9), iy
+	ld	(ix - 7), iy
 	ld	hl, (iy)
 	lea	iy, iy + 3
-	ld	bc, -8388608
-	ld	a, (ix - 3)
+	ld	bc, -3355443
 	ld	e, (iy)
 	call	__fadd
-	ld	iy, (ix - 9)
+	ld	iy, (ix - 7)
 	ld	(iy), bc
 	ld	(iy + 3), a
 BB5_7:
@@ -579,7 +485,7 @@ BB5_7:
 	pop	de
 	ld	a, l
 	bit	5, a
-	jr	nz, BB5_10
+	jr	nz, BB5_9
 	ld	hl, -720876
 	push	de
 	ld	e, (hl)
@@ -590,35 +496,33 @@ BB5_7:
 	pop	de
 	ld	a, l
 	bit	7, a
-	jr	z, BB5_12
-	ld	a, 61
-	jr	BB5_11
-BB5_10:
-	ld	a, -67
-BB5_11:
-	ld	iy, (_object+24)
-	ld	iy, (iy + 3)
+	ld	d, 61
+	ld	(ix - 1), d
+	jr	z, BB5_10
+BB5_9:
 	ld	hl, (_selected_obj)
-	ld	bc, 12
+	ld	bc, 27
 	call	__imulu
 	push	hl
 	pop	bc
+	ld	iy, _objects
 	add	iy, bc
-	ld	(ix - 3), iy
+	ld	(ix - 7), iy
 	lea	de, iy + 8
 	ld	hl, (iy + 8)
 	push	de
 	pop	iy
 	lea	iy, iy + 3
 	ld	bc, -3355443
+	ld	a, (ix - 1)
 	ld	e, (iy)
 	call	__fadd
-	ld	iy, (ix - 3)
+	ld	iy, (ix - 7)
 	ld	(iy + 8), bc
-	ld	(iy + 11), a
-	ld	c, 7
 	ld	b, 6
-BB5_12:
+	ld	c, 7
+	ld	(iy + 11), a
+BB5_10:
 	ld	iy, -720878
 	ld	l, (iy)
 	ld	h, (iy + 1)
@@ -634,29 +538,29 @@ BB5_12:
 	ld	c, a
 	ld	a, (_step.lm)
 	bit	6, l
-	jr	z, BB5_17
+	jr	z, BB5_15
 	or	a, a
-	jr	nz, BB5_17
+	jr	nz, BB5_15
 	ld	a, h
 	ld	hl, (_selected_obj)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	jr	nz, BB5_16
+	jr	nz, BB5_14
 	ld	hl, (_num_objs)
-BB5_16:
+BB5_14:
 	dec	hl
-	jr	BB5_21
-BB5_17:
+	jr	BB5_19
+BB5_15:
 	ld	a, (_step.ld)
 	ld	l, a
 	ld	a, e
 	cp	a, 0
 	call	pe, __setflag
-	jp	p, BB5_22
+	jp	p, BB5_20
 	ld	a, l
 	or	a, a
-	jr	nz, BB5_22
+	jr	nz, BB5_20
 	ld	a, h
 	ld	iy, (_selected_obj)
 	ld	de, (_num_objs)
@@ -665,27 +569,27 @@ BB5_17:
 	or	a, a
 	sbc	hl, de
 	ld	hl, 0
-	jr	z, BB5_21
+	jr	z, BB5_19
 	inc	iy
 	lea	hl, iy
-BB5_21:
+BB5_19:
 	ld	(_selected_obj), hl
 	ld	h, a
-BB5_22:
+BB5_20:
 	ld	a, h
 	ld	(_step.lm), a
 	ld	a, c
 	ld	(_step.ld), a
-	ld	hl, (ix - 6)
-BB5_23:
+	ld	hl, (ix - 4)
+BB5_21:
 	ld	a, l
 	or	a, a
-	jr	z, BB5_25
+	jr	z, BB5_23
 	ld	a, 0
-	jr	BB5_26
-BB5_25:
+	jr	BB5_24
+BB5_23:
 	ld	a, -1
-BB5_26:
+BB5_24:
 	ld	sp, ix
 	pop	ix
 	ret
@@ -705,7 +609,15 @@ _draw:
 	push	hl
 	call	_gfx_SetColor
 	pop	hl
-	ld	iy, (_object+24)
+	ld	hl, (_selected_obj)
+	ld	bc, 27
+	call	__imulu
+	push	hl
+	pop	de
+	ld	iy, _objects
+	add	iy, de
+	ld	hl, (iy + 24)
+	ld	(ix - 11), hl
 	push	hl
 	push	hl
 	push	hl
@@ -714,24 +626,23 @@ _draw:
 	ld	hl, 0
 	add	hl, sp
 	ex	de, hl
+	lea	hl, iy
 	ld	bc, 12
-	ld	hl, _object
 	ldir
-	push	iy
+	ld	hl, (ix - 11)
+	push	hl
 	call	_gfx3d_meshWireframe
 	pop	hl
 	pop	hl
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	iy, (_object+24)
-	ld	iy, (iy + 3)
 	ld	hl, (_selected_obj)
-	ld	bc, 12
+	ld	bc, 27
 	call	__imulu
 	push	hl
 	pop	de
-	lea	hl, iy
+	ld	hl, _objects
 	add	hl, de
 	ld	(ix - 11), hl
 	push	de
@@ -742,6 +653,7 @@ _draw:
 	ld	hl, 0
 	add	hl, sp
 	ex	de, hl
+	ld	bc, 12
 	ldir
 	pea	ix - 8
 	call	_gfx3d_projectVert
@@ -816,9 +728,6 @@ _draw:
 	ld	iy, (ix - 11)
 	ld	bc, (iy + 8)
 	ld	a, (iy + 11)
-	ld	hl, 2097152
-	ld	e, 65
-	call	__fmul
 	call	__ftol
 	ld	hl, 1
 	push	hl
@@ -926,30 +835,30 @@ _cube_faces:
 	section	.data,"aw",@progbits
 	public	_cube_verts
 _cube_verts:
-	dd	0x41200000
-	dd	0x41200000
-	dd	0xc1200000
-	dd	0x41200000
-	dd	0xc1200000
-	dd	0xc1200000
-	dd	0x41200000
-	dd	0x41200000
-	dd	0x41200000
-	dd	0x41200000
-	dd	0xc1200000
-	dd	0x41200000
-	dd	0xc1200000
-	dd	0x41200000
-	dd	0xc1200000
-	dd	0xc1200000
-	dd	0xc1200000
-	dd	0xc1200000
-	dd	0xc1200000
-	dd	0x41200000
-	dd	0x41200000
-	dd	0xc1200000
-	dd	0xc1200000
-	dd	0x41200000
+	dd	0x3f800000
+	dd	0x3f800000
+	dd	0xbf800000
+	dd	0x3f800000
+	dd	0xbf800000
+	dd	0xbf800000
+	dd	0x3f800000
+	dd	0x3f800000
+	dd	0x3f800000
+	dd	0x3f800000
+	dd	0xbf800000
+	dd	0x3f800000
+	dd	0xbf800000
+	dd	0x3f800000
+	dd	0xbf800000
+	dd	0xbf800000
+	dd	0xbf800000
+	dd	0xbf800000
+	dd	0xbf800000
+	dd	0x3f800000
+	dd	0x3f800000
+	dd	0xbf800000
+	dd	0xbf800000
+	dd	0x3f800000
 
 	section	.data,"aw",@progbits
 	public	_global_palette
@@ -965,18 +874,18 @@ _cube_data:
 	dl	8
 
 	section	.data,"aw",@progbits
-	public	_object
-_object:
+	public	_objects
+_objects:
 	dd	0x00000000
 	dd	0x00000000
-	dd	0x41300000
+	dd	0x40200000
 	db	12 dup 0
 	dl	_cube_data
 
 	section	.data,"aw",@progbits
 	public	_num_objs
 _num_objs:
-	dl	8
+	dl	1
 
 	section	.bss,"aw",@nobits
 	public	_selected_obj
@@ -1019,7 +928,6 @@ _.str.3:
 	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 6d9aa7a16db70f3d02ae304b08d4a03011281fef)"
 	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 6d9aa7a16db70f3d02ae304b08d4a03011281fef)"
 	ident	"clang version 15.0.0 (https://github.com/jacobly0/llvm-project 6d9aa7a16db70f3d02ae304b08d4a03011281fef)"
-	extern	_fabsf
 	extern	__Unwind_SjLj_Register
 	extern	__frameset
 	extern	_gfx_SetTextFGColor
@@ -1033,8 +941,8 @@ _.str.3:
 	extern	_gfx_SwapDraw
 	extern	__fmul
 	extern	__ftol
-	extern	_gfx_SetDraw
 	extern	_gfx_PrintInt
+	extern	_gfx_SetDraw
 	extern	__setflag
 	extern	_gfx_FillScreen
 	extern	__Unwind_SjLj_Unregister
@@ -1042,9 +950,7 @@ _.str.3:
 	extern	__fdiv
 	extern	__imulu
 	extern	_gfx_SetColor
-	extern	__ltof
 	extern	_gfx_End
 	extern	__bshru
-	extern	__fcmp
 	extern	_gfx_SetTextXY
 	extern	__frameset0
